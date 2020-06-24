@@ -1,5 +1,2 @@
-import Text from './components/text/Text';
-
-export {
-    Text
-}
+import Text from './components/text/Text'
+export { Text }
