@@ -6,18 +6,30 @@
   "scripts": {
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
-    "test:lint": "eslint .",
+    "test:lint": "eslint '**/*.js'",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/components/**/*.js"
+    "test:watch": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/components/**/*.js",
+    "lint:fix": "prettier-eslint '**/*.js' --write"
   },
   "keywords": [
     "React",
     "Component",
     "Library",
     "React",
-    "Ui",
     "Ui"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["npm run lint:fix", "git add"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suprim12/component-library-setup"
+  },
   "author": "Suprim Golay",
   "license": "MIT",
   "devDependencies": {
@@ -36,11 +48,18 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
+    "prettier-eslint": "^11.0.0",
+    "prettier-eslint-cli": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "react-test-renderer": "^16.13.1"
+  },
+  "dependencies": {
+    "uninstall": "0.0.0"
   }
 }
